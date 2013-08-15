@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DphBlog</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="main-div">
+	<div id="header">
+		<h1>Welcome to dphBlog</h1>
+		<h2>Here you will find my musings on politics, open source software, coding, and other stuff. Stick around and start a conversation!</h2>
+		<div id="user_nav">
+		  <% if current_user %>
+		    Logged in as <%= current_user.email %> |
+		    <%= link_to "Log out", log_out_path %>
+		  <% else %>
+		    <%= link_to "Sign up", sign_up_path %> |
+		    <%= link_to "Log in", log_in_path %>
+		  <% end %>
+		</div>
+	</div>
+	<div id="left-column">
+		<ul>
+			<li>Item One</li>
+			<li>Item Two</li>
+		</ul>
+	</div>
+	<%= yield %>
+</div>
+<%= flash[:notice] %>
+</body>
+</html>
