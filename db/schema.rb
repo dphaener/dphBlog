@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815053757) do
+ActiveRecord::Schema.define(version: 20130815201544) do
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.string   "creator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+# Could not dump table "sqlite_stat1" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string   "email"

@@ -45,3 +45,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem "bcrypt-ruby", :require => "bcrypt"
+gem "redactor-rails", :require => "redactor"

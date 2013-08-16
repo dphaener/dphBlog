@@ -10,25 +10,58 @@
 <div id="main-div">
 	<div id="header">
 		<h1>Welcome to dphBlog</h1>
-		<h2>Here you will find my musings on politics, open source software, coding, and other stuff. Stick around and start a conversation!</h2>
-		<div id="user_nav">
-		  <% if current_user %>
-		    Logged in as <%= current_user.email %> |
-		    <%= link_to "Log out", log_out_path %>
-		  <% else %>
-		    <%= link_to "Sign up", sign_up_path %> |
-		    <%= link_to "Log in", log_in_path %>
-		  <% end %>
+		<h2>My musings on politics, open source software, coding, and other stuff. Stick around and start a conversation!</h2>
+		<div id="menu_bar">
+			<span id="menu_items">
+				<%= link_to "Home", root_path %>
+				<% if current_user %>
+					<% if current_user.user_level < 5 %>
+						| <%= link_to "New Post", new_post_path %>
+					<% end %>
+				<% end %>
+			</span>
+			<span id="user_nav">
+			  <% if current_user %>
+			    <% if current_user.username.length > 0 %>
+						Logged in as <%= current_user.username %> |
+					<% else %>
+						Logged in as <%= current_user.email %> |
+					<% end %>
+					<% if current_user.user_level == 0 %>
+						<%= link_to "Admin", admin_path %> | <%= link_to "Log out", log_out_path %>
+					<% else %>
+						<%= link_to "Log out", log_out_path %>
+					<% end %>
+			  <% else %>
+			    <%= link_to "Sign up", sign_up_path %> |
+			    <%= link_to "Log in", log_in_path %>
+			  <% end %>
+			</span>
 		</div>
 	</div>
 	<div id="left-column">
-		<ul>
-			<li>Item One</li>
-			<li>Item Two</li>
+		<h3>Archives</h3>
+		<ul class="collapsibleList">
+			<% if all_posts_months %>
+					<% all_posts_months.each do |post| %>
+						<li class="top-list">
+							<label for="box<%= post %>"><%= nice_date(post) %></label>
+							<input id="box<%= post %>" type=checkbox></input>
+							<ul>
+								<% if get_post_title_by_month(post) %>
+									<% get_post_title_by_month(post).each do |article| %>
+										<li class="sub-list"><%= link_to article.title, :controller => "posts", :id => article.id %></li>
+									<% end %>
+								<% end %>
+							</ul>
+						</li>
+					<% end %>
+			<% else %>
+				<li>No posts</li>
+			<% end %>	
 		</ul>
 	</div>
 	<%= yield %>
 </div>
-<%= flash[:notice] %>
 </body>
 </html>

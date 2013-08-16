@@ -1,0 +1,66 @@
+<h1>New Post</h1>
+<script>
+$(document).ready(function() {
+      $("#wysiwyg").wysiwyg({
+				formWidth: 600,
+	      formHeight: 500,
+	      controls: {
+	        justifyLeft   : { visible : true },
+	        justifyCenter : { visible : true },
+	        justifyRight  : { visible : true },
+	        justifyFull   : { visible : true },
+	
+	        indent        : { visible : true },
+	        outdent       : { visible : true },
+	
+	        subscript    : { visible : false },
+	        superscript  : { visible : false },
+	
+	        undo         : { visible : false },
+	        redo         : { visible : false },
+	        
+	        createLink           : { visible : false },
+	        insertImage          : { visible : false },
+	        code                 : { visible : false },
+	        insertTable          : { visible : false },
+	        insertOrderedList    : { visible : false },
+	        insertUnorderedList  : { visible : false },
+	        insertHorizontalRule : { visible : false },
+	        removeFormat         : { visible : false },
+	
+	        h1          : { visible : false },
+	        h2          : { visible : false },
+	        h3          : { visible : false },
+	
+	        cut          : { visible : true },
+	        copy         : { visible : true },
+	        paste        : { visible : true },
+	        html         : { visible : true }
+	      }
+			});
+	});
+</script>
+<%= form_for :post, url: posts_path do |f| %>
+	<% if @post.errors.any? %>
+	  <div id="errorExplanation">
+	    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+	      this post from being saved:</h2>
+	    <ul>
+	    <% @post.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>  
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div><br />
+  <div class="text_edit">
+    <%= f.label :text %><br>
+    <%= f.text_area :text, :id => "wysiwyg" %>
+  </div><br />
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

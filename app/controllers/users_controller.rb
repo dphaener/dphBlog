@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 			if user_log
 				session[:user_id] = user_log.id
 			end
-	    redirect_to root_url, :notice => "Signed up!"
+	    redirect_to root_url
 	  else
 	    render "new"
 	  end
@@ -18,6 +18,6 @@ class UsersController < ApplicationController
 	
 	private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :username)
   end
 end

@@ -9,59 +9,163 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require jquery.wysiwyg.old-school
  *= require_tree .
  */
 
+#wysiwyg {
+	width:800px;
+	height: 400px;
+}
 body {
-	background: gray;
+    background: dimgray;
 }
-
-#header {
-  font-family: courier new;
-  color: #B5CC4B;
-}
-
-#header h1 {
-  text-align: center;
-  font-size: 50px;
-  font-weight: lighter;
-  margin: 0px;
-}
-
-#header h2 {
-  text-align: center;
-  font-size: 16px;
-  font-weight: lighter;
-  border-bottom: solid black 2px;
-	padding-bottom:10px;
-}
-
-#left-column {
-	width: 15%;
-	height: 700px;
-	float: left;
-	color: lightblue;
-}
-
-#right-column {
+.text_edit {
+	float:left;
 	width: 80%;
-	height: 700px;
-	float: left;
-	padding-left: 25px;
-	border-left: 1px solid black;
-	color: lightblue;
+	height: 500px;
 }
-
+#header {
+    color: greenyellow;
+    font-family: courier new;
+}
+#header h1 {
+    font-size: 50px;
+    font-weight: lighter;
+    margin: 0;
+    text-align: center;
+}
+#header h2 {
+    font-size: 22px;
+    font-weight: lighter;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: courier new;
+    font-variant: small-caps;
+}
+#left-column {
+    color: mediumturquoise;
+    float: left;
+    height: 700px;
+    width: 15%;
+    font-family: courier new;
+    font-size: 15px;
+    border-right: 1px solid black;
+    margin-right: 25px;
+    margin-top: 10px;
+}
+#right-column {
+    color: lightblue;
+    float: left;
+    height: 700px;
+    width: 80%;
+    margin-top: 10px;
+}
 #right-column h1 {
-	color: orange;
+    color: orange;
 }
-
-#user_nav {
+#menu_bar {
 	width: 100%;
-	text-align: right;
-	border-bottom: solid black 2px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	height: 45px;
+}
+#menu_items {
+	clear:both;
+	float:left;
+	font-family: courier new;
+  color: orange;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+#user_nav {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  float: right;
+  text-align: right;
+  font-family: courier new;
+  color: orange;
+}
+#user_nav a:link, #menu_items a:link {
+    color: orange;
+}
+#user_nav a:visited, #menu_items a:visited {
+    color: burlywood;
+}
+#user_nav a:hover, #user_nav a:active {
+    color: aquamarine;
+}
+#left-column ul {
+    padding-left: 25px;
+    padding-right: 15px;
+    color: cyan;
+}
+#left-column h3 {
+	color: orange;
+	text-align: center;
+	border-bottom: 1px dashed black;
 	padding-bottom:10px;
+	padding-top:0px;
+	margin-top:0px;
+	font-weight: lighter;
+	font-size: 22px;
+}
+#left-column a {
+	text-decoration: none;
+	color: papayawhip;
+}
+#left-column a:hover {
+	cursor: pointer;
+}
+.collapsibleList li > input + * {
+ display: none;
+}
+ 
+.collapsibleList li > input:checked + * {
+ display: block;
 }
 
-#flash-notice {
+.collapsibleList li > input {
+ display: none;
 }
+
+.collapsibleList label {
+ cursor: pointer;
+}
+.collapsibleList .top-list {
+  list-style-image: url('images/double-arrow.gif');
+}
+.collapsibleList .top-list > input:checked {
+	list-style-image: url('images/double-arrow-down.gif');
+}
+.collapsibleList .sub-list {
+	list-style-type: disc;
+}
+.collapsibleList .sub-list {
+	list-style-image: url('images/dot_black.gif');
+	margin-left: -15px;
+}
+.post-title {
+	font-size:30px;
+	font-family: courier new;
+	text-transform: uppercase;
+	color: orange;
+	font-weight: lighter;
+}
+.post-paragraph {
+	font-family: courier new;
+	color: white;
+	font-size: 18px;
+	text-indent: 10px;
+}
+.post-details {
+	font-family: courier new;
+	color: greenyellow;
+	font-variant: small-caps;
+	font-size: 16px;
+	text-align: right;
+	float: right;
+	padding-right:25px;
+	padding-top:15px;
+}
+

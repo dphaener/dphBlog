@@ -1,3 +1,9 @@
-<p>The most current blog post goes here</p>
+<div>
+	<h2 class="post-title"><%= @post[0].title %></h2>
+	<p class="post-paragraph"><%= raw(@post[0].text) %></p>
+	<span class="post-details"> Posted by: <%= @post[0].creator %> on <%= @post[0].updated_at.strftime("%B %d, %Y") %></span>
+</div>
+	
+
 
 
