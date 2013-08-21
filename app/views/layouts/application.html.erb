@@ -50,7 +50,7 @@
 							<ul>
 								<% if get_post_title_by_month(post) %>
 									<% get_post_title_by_month(post).each do |article| %>
-										<li class="sub-list"><%= link_to article.title, :controller => "posts", :id => article.id %></li>
+										<li class="sub-list"><%= link_to article.title, post_path(article) %></li>
 									<% end %>
 								<% end %>
 							</ul>
@@ -61,7 +61,9 @@
 			<% end %>	
 		</ul>
 	</div>
-	<%= yield %>
+	<div id="right-column">
+		<%= yield %>
+	</div>
 </div>
 </body>
 </html>

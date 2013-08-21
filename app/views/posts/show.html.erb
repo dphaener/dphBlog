@@ -1,6 +1,2 @@
-<div>
-	<h2 class="post-title"><%= @post.title %></h2>
-	<p class="post-paragraph"><%= raw(@post.text) %></p>
-	<span class="post-details"> Posted by: <%= @post.creator %> on <%= @post.updated_at.strftime("%B %d, %Y") %></span>
-</div>
+<%= render 'post_form' %>
 	

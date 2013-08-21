@@ -1,0 +1,32 @@
+<script>
+$(document).ready(function() {
+	$("#wysiwyg").wysiwyg({
+		formWidth: 600,
+		formHeight: 500,
+	});
+});
+</script>
+<%= form_for :post, url: posts_path do |f| %>
+	<% if @post.errors.any? %>
+	  <div id="errorExplanation">
+	    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+	      this post from being saved:</h2>
+	    <ul>
+	    <% @post.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>  
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div><br />
+  <div class="text_edit">
+    <%= f.label :text %><br>
+    <%= f.text_area :text, :id => "wysiwyg" %>
+  </div><br />
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

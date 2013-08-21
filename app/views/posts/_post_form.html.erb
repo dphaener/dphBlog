@@ -1,0 +1,51 @@
+<div class="show-post">
+	<h2 class="post-title"><%= @post.title %></h2>
+	<p class="post-paragraph"><%= raw(@post.text) %></p>
+	<span class="post-details"> Posted by: <%= @post.creator %> on <%= @post.updated_at.strftime("%B %d, %Y") %></span>
+</div>
+<br />
+<div>
+	<br /><hr>
+	<% @post.comments.each do |comment| %>
+		<div class="comments-box">
+			<div class="commenter-box">
+				<span class="commenter"><%= comment.commenter %></span><br />
+				<span class="comment-date"><%= comment.updated_at.strftime("%B %d, %Y") %></span>
+			</div>
+			<div class="comment-box">
+				<span class="comment"><%= comment.body %></span>
+			</div>
+		</div>
+	<% end %>
+	<div class="divider">
+		<br />
+		<% if @post.comments.count > 0 %>
+			<hr>
+		<% end %>
+	</div>
+	<% if current_user %>
+		<h2 class="comment-title">Add a comment:</h2>
+		<div class="new-comment">
+			<%= form_for([@post, @post.comments.build]) do |f| %>
+			  <p>
+			    <%= f.text_area :body, :id => "wysiwyg-comment" %>
+			    <%= f.hidden_field :commenter, :value => get_commenter(current_user) %>
+			  </p>
+			  <p>
+			    <%= f.submit %>
+			  </p>
+			<% end %>	
+		</div>
+	<% else %>
+		<%= link_to "Login", log_in_path %> or <%= link_to "Sign-up", sign_up_path %> to post a comment.
+	<% end %>
+	<br />
+</div>	
+<% if current_user %>
+	<% if current_user.user_level == 0 %>
+		<div class = "admin-buttons">
+			<%= link_to "<button>Edit Post</button>".html_safe, edit_post_path(@post) %>
+			<%= link_to "<button>Delete Post</button>".html_safe, post_path(@post), method: :delete, data: { confirm: 'Are you sure? This cannot be undone.' } %>
+		</div>
+	<% end %>
+<% end %>

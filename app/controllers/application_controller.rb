@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	helper_method :all_posts_months
 	helper_method :get_post_title_by_month
 	helper_method :nice_date
+	helper_method :get_commenter
 
 	private
 
@@ -18,5 +19,13 @@ class ApplicationController < ActionController::Base
 	def nice_date(datestring)
 		d = Date.parse(datestring).strftime("%B %Y")
 		@nice_date = d
+	end
+	def get_commenter(user)
+		@get_commenter = user.username
+	  if @get_commenter.length == 0
+			@get_commenter = user.email
+		else
+			@get_commenter = user.username
+		end
 	end
 end

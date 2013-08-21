@@ -5,9 +5,12 @@ DphBlog::Application.routes.draw do
 	get "sign_up" => "users#new", :as => "sign_up"
 	get "admin" => "admin#index", :as => "admin"
 	get "new_post" => "posts#new", :as => "new_post"
+	get "delete_user" => "admin#destroy", :as => "delete_user"
 	root :to => "welcome#index"
 	resources :users
 	resources :sessions
-	resources :posts
+	resources :posts do
+		resources :comments
+	end
 	resources :admin
 end
