@@ -13,7 +13,7 @@
   <% end %>
   <p>
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email %><span class="required"> *</span>
   </p>
   <p>
     <%= f.label :username %><br />
@@ -21,12 +21,13 @@
   </p>
   <p>
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password %><span class="required"> *</span>
   </p>
   <p>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation %><span class="required"> *</span>
   </p>
   <p class="button"><%= f.submit %></p>
+  <span class="required"> *=required field</span>
 <% end %>
 

@@ -1,0 +1,30 @@
+<h1>Edit User</h1>
+
+<%= form_for :user, url: user_path(@user.id), method: :patch do |f| %>
+	<% if @user.errors.any? %>
+	  <div id="errorExplanation">
+	    <h2><%= pluralize(@user.errors.count, "error") %> prohibited
+	      this post from being saved:</h2>
+	    <ul>
+	    <% @user.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	<% end %>  
+  <div>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div><br />
+  <div>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div><br />
+  <div>
+    <%= f.label :user_level %><br>
+    <%= f.text_field :user_level %>
+  </div><br />
+  <div>
+    <%= f.submit %><%= link_to "<button>Cancel</button>".html_safe, admin_path %>
+  </div>
+<% end %>
